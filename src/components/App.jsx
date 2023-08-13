@@ -11,27 +11,15 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleGoodClick = () => {
+  onLeaveFeedback = evt => {
+    const option = evt.currentTarget.textContent;
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
+        [option]: prevState[option] + 1,
       };
     });
   };
-  handleNeutralClick = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-  handleBadClick = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
-      };
-    });
-  };
+
   countTotalFeedback() {
     return this.state.good + this.state.neutral + this.state.bad;
   }
@@ -43,9 +31,8 @@ export class App extends Component {
       <div>
         <Section title={'Please leave feedback'}>
           <Feedback
-            onClickGood={this.handleGoodClick}
-            onClickNeutral={this.handleNeutralClick}
-            onClickBad={this.handleBadClick}
+            onLeaveFeedback={this.onLeaveFeedback}
+            options={Object.keys(this.state)}
           />
         </Section>
         <Section title="Statistics">

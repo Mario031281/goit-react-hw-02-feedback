@@ -1,16 +1,16 @@
 import { Btn, BtnSpan } from './FeedbackOptions.styled';
-export const Feedback = ({ onClickGood, onClickNeutral, onClickBad }) => {
+export const Feedback = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      <Btn onClick={onClickGood}>
-        <BtnSpan>Good</BtnSpan>
-      </Btn>
-      <Btn onClick={onClickNeutral}>
-        <BtnSpan>Neutral</BtnSpan>
-      </Btn>
-      <Btn onClick={onClickBad}>
-        <BtnSpan>Bad</BtnSpan>
-      </Btn>
+      {options.map(option => {
+        return (
+          <li key={option}>
+            <Btn type="button" onClick={onLeaveFeedback}>
+              <BtnSpan>{option}</BtnSpan>
+            </Btn>
+          </li>
+        );
+      })}
     </>
   );
 };
